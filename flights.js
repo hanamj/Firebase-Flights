@@ -17,14 +17,6 @@ client.on('data', function(data) {
   data = "" + data
   data = data.replace(/(\r\n|\n|\r)/gm,"");
 
-//        pid = msg[4]
-//       flight = msg[10]
-//       alt = msg[11]
-//       lat = msg[15]
-//       lon = msg[14]
-//       heading = msg[13]
-//       speed = msg[12]
-
   var d = data.split(",");
 
   if (d[0] !== "MSG") return;
@@ -37,9 +29,9 @@ client.on('data', function(data) {
               "Speed: " + d[12] + "  " +
               "Flight: " + d[10])
 
-  var fb = {}
-
   if (d[4].length == 0) return;
+
+  var fb = {}
   fb["id"] = d[4];
   
   if (d[11].length > 0) fb["alt"] = d[11];

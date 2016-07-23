@@ -2,7 +2,7 @@ var net = require('net');
 var firebase = require("firebase");
 
 firebase.initializeApp({
-  serviceAccount: "./Flights-4a11006477e0.json",
+  serviceAccount: "../Flights-4a11006477e0.json",
   databaseURL: "https://flights-e282c.firebaseio.com"
 });
 
@@ -34,7 +34,8 @@ client.on('data', function(data) {
               "Lat: " + d[15] + "  " +
               "Lon: " + d[14] + "  " +
               "Head: " + d[13] + "  " +
-              "Speed: " + d[12])
+              "Speed: " + d[12] + "  " +
+              "Flight: " + d[10])
 
   var fb = {}
 
@@ -46,9 +47,8 @@ client.on('data', function(data) {
   if (d[14].length > 0) fb["lon"] = d[14];
   if (d[13].length > 0) fb["head"] = d[13];
   if (d[12].length > 0) fb["speed"] = d[12];
+  if (d[10].length > 0) fb["flight"] = d[10];
   
-
-
   flightsRef.child(d[4]).update(fb);
 
 });

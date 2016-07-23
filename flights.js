@@ -9,7 +9,7 @@ firebase.initializeApp({
 var flightsRef = firebase.database().ref('flights/')
 
 var client = new net.Socket();
-client.connect(30003, '192.168.0.30', function() {
+client.connect(30003, 'localhost', function() {
   console.log('Connected');
 });
 

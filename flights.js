@@ -48,6 +48,9 @@ client.on('data', function(data) {
   if (d[13].length > 0) fb["head"] = d[13];
   if (d[12].length > 0) fb["speed"] = d[12];
   if (d[10].length > 0) fb["flight"] = d[10];
+  if (d[6].length > 0) fb["date"] = d[6];
+  if (d[7].length > 0) fb["time"] = d[7];
+  if (ts > 0) fb["timestamp"] = ts;
   
   flightsRef.child(d[4]).update(fb);
 

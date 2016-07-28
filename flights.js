@@ -27,7 +27,7 @@ client.on('data', function(data) {
               "alt: " + d[11] + "  " +
               "lat: " + d[15] + "  " +
               "lon: " + d[14] + "  " +
-              "timestamp: " + ts + "  " +
+              "timestamp: " + chalk.red(ts) + "  " +
               "date: " + d[6] + "  " +
               "time: " + d[7] + "  " +
               "head: " + d[13] + "  " +

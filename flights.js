@@ -21,7 +21,7 @@ client.on('data', function(data) {
 
   if (d[0] !== "MSG") return;
 
-  var ts = new Date(d[6] + " " d[7]).getTime()
+  var ts = new Date(d[6] + " " + d[7]).getTime()
 
   console.log("id: " + d[4] + "  " +
               "alt: " + d[11] + "  " +

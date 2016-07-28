@@ -21,13 +21,21 @@ client.on('data', function(data) {
 
   if (d[0] !== "MSG") return;
 
-  console.log("ID: " + d[4] + "  " +
-              "Alt: " + d[11] + "  " +
-              "Lat: " + d[15] + "  " +
-              "Lon: " + d[14] + "  " +
-              "Head: " + d[13] + "  " +
-              "Speed: " + d[12] + "  " +
-              "Flight: " + d[10])
+  var ts = new Date(d[6] + " " d[7]).getTime()
+
+  console.log("id: " + d[4] + "  " +
+              "alt: " + d[11] + "  " +
+              "lat: " + d[15] + "  " +
+              "lon: " + d[14] + "  " +
+              "timestamp: " + ts + "  " +
+              "date: " + d[6] + "  " +
+              "time: " + d[7] + "  " +
+              "head: " + d[13] + "  " +
+              "speed: " + d[12] + "  " +
+              "flight: " + d[10])
+
+  //6: date
+  //7: time
 
   if (d[4].length == 0) return;
 

@@ -7,6 +7,7 @@ firebase.initializeApp({
 });
 
 var flightsRef = firebase.database().ref('flights/')
+var timesRef = firebase.database().ref('times/')
 
 var client = new net.Socket();
 client.connect(30003, 'localhost', function() {
@@ -53,6 +54,7 @@ client.on('data', function(data) {
   if (ts > 0) fb["timestamp"] = ts;
   
   flightsRef.child(d[4]).update(fb);
+  timesRef.child(ts).set(fb);
 
 });
 

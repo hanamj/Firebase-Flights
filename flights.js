@@ -60,10 +60,10 @@ setInterval(function () {
   flightsRef.child("active/").once('value').then(function(data) {
     var af = data.val();
     for (f in af) {
-      console.log(f.id)
+      console.log(f)
     }
   });
-}, 10000)
+}, 1000)
 
 
 

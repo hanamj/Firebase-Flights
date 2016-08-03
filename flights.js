@@ -23,16 +23,16 @@ client.on('data', function(data) {
 
   var ts = new Date(d[6] + " " + d[7]).getTime()
 
-  console.log("id: " + d[4] + "  " +
-              "alt: " + d[11] + "  " +
-              "lat: " + d[15] + "  " +
-              "lon: " + d[14] + "  " +
-              "timestamp: " + ts + "  " +
-              "date: " + d[6] + "  " +
-              "time: " + d[7] + "  " +
-              "head: " + d[13] + "  " +
-              "speed: " + d[12] + "  " +
-              "flight: " + d[10])
+  // console.log("id: " + d[4] + "  " +
+  //             "alt: " + d[11] + "  " +
+  //             "lat: " + d[15] + "  " +
+  //             "lon: " + d[14] + "  " +
+  //             "timestamp: " + ts + "  " +
+  //             "date: " + d[6] + "  " +
+  //             "time: " + d[7] + "  " +
+  //             "head: " + d[13] + "  " +
+  //             "speed: " + d[12] + "  " +
+  //             "flight: " + d[10])
 
   if (d[4].length == 0) return;
 
@@ -55,6 +55,12 @@ client.on('data', function(data) {
 client.on('close', function() {
   console.log('Connection closed');
 });
+
+setInterval(function () {
+  flightsRef.child("active/").once('value').then(function(s) {
+    console.log(s.val())
+  });
+}, 10000)
 
 
 

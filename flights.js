@@ -60,7 +60,7 @@ setInterval(function () {
   flightsRef.child("active/").once('value').then(function(data) {
     var af = data.val();
     for (f in af) {
-      console.log(af[f].alt)
+      flightsRef.child("active/").child(f).update({updated: 0})
     }
   });
 }, 1000)

@@ -60,7 +60,7 @@ setInterval(function () {
   flightsRef.child("active/").once('value').then(function(data) {
     var af = data.val();
     for (f in af) {
-      console.log(f)
+      console.log(af[f].id)
     }
   });
 }, 1000)

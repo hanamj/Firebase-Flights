@@ -64,6 +64,7 @@ setInterval(function () {
         flightsRef.child("active/").child(f).update({updated: 0})
       } else {
         flightsRef.child("inactive/").child(f).update(af[f])
+        flightsRef.child("active/").child(f).remove()
       }
     }
   });

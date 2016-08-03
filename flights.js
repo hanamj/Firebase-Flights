@@ -34,9 +34,6 @@ client.on('data', function(data) {
               "speed: " + d[12] + "  " +
               "flight: " + d[10])
 
-  //6: date
-  //7: time
-
   if (d[4].length == 0) return;
 
   var fb = {}
@@ -50,10 +47,14 @@ client.on('data', function(data) {
   if (d[6].length > 0) fb["date"] = d[6];
   if (d[7].length > 0) fb["time"] = d[7];
   if (ts > 0) fb["timestamp"] = ts;
+  fb['updated'] = 1
   
-  flightsRef.child(d[4]).update(fb);
+  flightsRef.child("active/").child(d[4]).update(fb);
 });
 
 client.on('close', function() {
   console.log('Connection closed');
 });
+
+
+

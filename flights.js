@@ -54,9 +54,9 @@ client.on('data', function(data) {
 
   if ((d[14].length > 0) && (d[15].length > 0)) {
     var dist = getDistanceFromLatLonInKm(HOMELAT, HOMELONG, Number(d[14]), Number(d[15]))
-    fb["km"] = dist
+    fb["km"] = Math.round(dist * 100) / 100
     dist = km2nm(dist)
-    fb["nm"] = dist
+    fb["nm"] = Math.round(dist * 100) / 100
   }
   
   flightsRef.child("inactive/").child(d[4]).remove()

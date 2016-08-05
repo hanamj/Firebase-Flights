@@ -72,12 +72,16 @@ client.on('data', function(data) {
       if (distances[fb["brng"]] < fb["nm"]) {
         //This dist is farther, so update list and FB
         distances[fb["brng"]] = fb["nm"]
-        distRef.update({fb["brng"]: fb["nm"]})
+        var o = {}
+        o[fb["brng"]] = fb["nm"]
+        distRef.update(o)
       }
     } else {
       //No dist yet at this angle, so add it
       distances[fb["brng"]] = fb["nm"]
-      distRef.update({fb["brng"]: fb["nm"]})
+      var o = {}
+      o[fb["brng"]] = fb["nm"]
+      distRef.update(o)
     }
   }
   

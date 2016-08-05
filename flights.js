@@ -57,6 +57,9 @@ client.on('data', function(data) {
     fb["km"] = Math.round(dist * 100) / 100
     dist = km2nm(dist)
     fb["nm"] = Math.round(dist * 100) / 100
+
+    fb["brng"] = getBearing(Number(d[14]), Number(d[15]))
+
   }
   
   flightsRef.child("inactive/").child(d[4]).remove()
@@ -108,3 +111,15 @@ function deg2rad(deg) {
 function km2nm(km) {
   return km * 0.5399568
 }
+
+function getBearing(lat, lon) {
+  var y = Math.sin(lon - HOMELONG) * Math.cos(lat);
+  var x = Math.cos(HOMELAT)*Math.sin(lat) -
+          Math.sin(HOMELAT)*Math.cos(lat)*Math.cos(lon - HOMELONG);
+  var brng = Math.atan2(y, x).toDegrees();
+
+  return brng;
+}
+
+
+

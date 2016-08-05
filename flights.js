@@ -8,8 +8,14 @@ firebase.initializeApp({
   serviceAccount: "../Flights-4a11006477e0.json",
   databaseURL: "https://flights-e282c.firebaseio.com"
 });
-
 var flightsRef = firebase.database().ref('flights/')
+var distRef = firebase.database().ref('distances/')
+
+var distances = {}
+
+distRef.once("value", function (snap) {
+  console.log(snap.val())
+})
 
 var client = new net.Socket();
 client.connect(30003, 'localhost', function() {

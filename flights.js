@@ -39,8 +39,8 @@ client.on('data', function(data) {
   var fb = {}
   fb["id"] = d[4];
   if (d[11].length > 0) fb["alt"] = d[11];
-  if (d[15].length > 0) fb["lat"] = d[15];
-  if (d[14].length > 0) fb["lon"] = d[14];
+  if (d[14].length > 0) fb["lat"] = d[14];
+  if (d[15].length > 0) fb["lon"] = d[15];
   if (d[13].length > 0) fb["head"] = d[13];
   if (d[12].length > 0) fb["speed"] = d[12];
   if (d[10].length > 0) fb["flight"] = d[10];
@@ -49,6 +49,7 @@ client.on('data', function(data) {
   if (ts > 0) fb["timestamp"] = ts;
   fb['updated'] = 1
   
+  flightsRef.child("inactive/").child(d[4]).remove()
   flightsRef.child("active/").child(d[4]).update(fb);
 });
 
@@ -56,6 +57,7 @@ client.on('close', function() {
   console.log('Connection closed');
 });
 
+//This loop takes care of moving inactive planes out of view
 setInterval(function () {
   flightsRef.child("active/").once('value').then(function(data) {
     var af = data.val();
@@ -68,7 +70,7 @@ setInterval(function () {
       }
     }
   });
-}, 10000)
+}, 15000)
 
 
 

@@ -42,8 +42,8 @@ client.on('data', function(data) {
   var fb = {}
   fb["id"] = d[4];
   if (d[11].length > 0) fb["alt"] = d[11];
-  if (d[14].length > 0) fb["lat"] = d[14];
-  if (d[15].length > 0) fb["lon"] = d[15];
+  if (d[14].length > 0) fb["lat"] = Number(d[14]);
+  if (d[15].length > 0) fb["lon"] = Number(d[15]);
   if (d[13].length > 0) fb["head"] = d[13];
   if (d[12].length > 0) fb["speed"] = d[12];
   if (d[10].length > 0) fb["flight"] = d[10];
@@ -53,12 +53,12 @@ client.on('data', function(data) {
   fb['updated'] = 1
 
   if ((d[14].length > 0) && (d[15].length > 0)) {
-    var dist = getDistanceFromLatLonInKm(HOMELAT, HOMELONG, Number(d[14]), Number(d[15]))
+    var dist = getDistanceFromLatLonInKm(HOMELAT, HOMELONG, fb["lat"], fb["lon"])
     fb["km"] = Math.round(dist * 100) / 100
     dist = km2nm(dist)
     fb["nm"] = Math.round(dist * 100) / 100
 
-    fb["brng"] = getBearing(Number(d[14]), Number(d[15]))
+    fb["brng"] = Math.round( getBearing(fb["lat"], fb["lon"]) )
 
   }
   

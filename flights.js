@@ -69,18 +69,20 @@ client.on('data', function(data) {
 
     if (fb["brng"] in distances) {
       //See if this is the longest dist we've had at this angle
-      if (distances[fb["brng"]] < fb["nm"]) {
+      if (distances[fb["brng"]].dist < fb["nm"]) {
         //This dist is farther, so update list and FB
-        distances[fb["brng"]] = fb["nm"]
         var o = {}
-        o[fb["brng"]] = fb["nm"]
+        o[fb["brng"]] = {dist: fb["nm"], lat: fb["lat"], lon: fb["lon"]}
+
+        distances[fb["brng"]] = o[fb["brng"]]
         distRef.update(o)
       }
     } else {
       //No dist yet at this angle, so add it
-      distances[fb["brng"]] = fb["nm"]
       var o = {}
-      o[fb["brng"]] = fb["nm"]
+      o[fb["brng"]] = {dist: fb["nm"], lat: fb["lat"], lon: fb["lon"]}
+
+      distances[fb["brng"]] = o[fb["brng"]]
       distRef.update(o)
     }
   }

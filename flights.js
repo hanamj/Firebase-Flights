@@ -9,16 +9,6 @@ firebase.initializeApp({
   databaseURL: "https://flights-e282c.firebaseio.com"
 });
 
-/** Extend Number object with method to convert numeric degrees to radians */
-if (Number.prototype.toRadians === undefined) {
-    Number.prototype.toRadians = function() { return this * Math.PI / 180; };
-}
-
-/** Extend Number object with method to convert radians to numeric (signed) degrees */
-if (Number.prototype.toDegrees === undefined) {
-    Number.prototype.toDegrees = function() { return this * 180 / Math.PI; };
-}
-
 var flightsRef = firebase.database().ref('flights/')
 
 var client = new net.Socket();
@@ -129,5 +119,15 @@ function getBearing(lat, lon) {
   var brng = Math.atan2(y, x).toDegrees();
 
   return brng;
+}
+
+/** Extend Number object with method to convert numeric degrees to radians */
+if (Number.prototype.toRadians === undefined) {
+    Number.prototype.toRadians = function() { return this * Math.PI / 180; };
+}
+
+/** Extend Number object with method to convert radians to numeric (signed) degrees */
+if (Number.prototype.toDegrees === undefined) {
+    Number.prototype.toDegrees = function() { return this * 180 / Math.PI; };
 }
 

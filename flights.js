@@ -14,7 +14,7 @@ var distRef = firebase.database().ref('distances/')
 var distances = {}
 
 distRef.once("value", function (snap) {
-  console.log(snap.val())
+  if (snap.val() !== null) distances = snap.val()
 })
 
 var client = new net.Socket();
@@ -66,6 +66,18 @@ client.on('data', function(data) {
 
     fb["brng"] = Math.round( getBearing(fb["lat"], fb["lon"]) )
 
+    if (fb["brng"] in distances) {
+      //See if this is the longest dist we've had at this angle
+      if (distances[fb["brng"]] < fb["nm"]) {
+        //This dist is farther, so update list and FB
+        distances[fb["brng"]] = fb["nm"]
+        distRef.child(fb["brng"]).update(fb["nm"])
+      }
+    } else {
+      //No dist yet at this angle, so add it
+      distances[fb["brng"]] = fb["nm"]
+      distRef.child(fb["brng"]).update(fb["nm"])
+    }
   }
   
   flightsRef.child("inactive/").child(d[4]).remove()

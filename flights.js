@@ -89,6 +89,7 @@ client.on('data', function(data) {
   
   flightsRef.child("inactive/").child(d[4]).remove()
   flightsRef.child("active/").child(d[4]).update(fb);
+  flightsRef.child("active/").child(d[4]).child("positions").child(ts).update({lat: fb["lat"], lng: fb["lon"]});
 });
 
 client.on('close', function() {
@@ -103,6 +104,7 @@ setInterval(function () {
       if (af[f].updated == 1) {
         flightsRef.child("active/").child(f).update({updated: 0})
       } else {
+        af[f].positions = {}
         flightsRef.child("inactive/").child(f).update(af[f])
         flightsRef.child("active/").child(f).remove()
       }

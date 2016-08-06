@@ -89,7 +89,9 @@ client.on('data', function(data) {
   
   flightsRef.child("inactive/").child(d[4]).remove()
   flightsRef.child("active/").child(d[4]).update(fb);
-  flightsRef.child("active/").child(d[4]).child("positions").child(ts).update({lat: Number(d[14]), lng: Number(d[15])});
+  if ((d[14].length > 0) && (d[15].length > 0)) {
+    flightsRef.child("active/").child(d[4]).child("positions").child(ts).update({lat: Number(d[14]), lng: Number(d[15])});
+  }
 });
 
 client.on('close', function() {

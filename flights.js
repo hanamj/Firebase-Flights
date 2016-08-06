@@ -52,6 +52,7 @@ client.on('data', function(data) {
   if (d[14].length > 0) fb["lat"] = Number(d[14]);
   if (d[15].length > 0) fb["lon"] = Number(d[15]);
   if (d[13].length > 0) fb["head"] = d[13];
+  if (d[16].length > 0) fb["fpm"] = d[16];
   if (d[12].length > 0) fb["speed"] = d[12];
   if (d[10].length > 0) fb["flight"] = d[10];
   if (d[6].length > 0) fb["date"] = d[6];

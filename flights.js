@@ -14,7 +14,6 @@ var distRef = firebase.database().ref('distances/')
 var distances = {}
 
 distRef.once("value", function (snap) {
-  console.log(snap.val())
   if (snap.val() !== null) distances = snap.val()
 })
 
